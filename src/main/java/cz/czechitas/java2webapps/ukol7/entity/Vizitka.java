@@ -115,7 +115,7 @@ public class Vizitka {
         this.obec = obec;
     }
 
-    public String getCelaAdresa(){
-        return ulice+psc+obec;
+    public String celaAdresa(){
+        return ulice+" "+psc+" "+obec;
     }
 }
