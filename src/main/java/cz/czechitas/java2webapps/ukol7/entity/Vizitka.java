@@ -118,4 +118,19 @@ public class Vizitka {
     public String celaAdresa(){
         return ulice+" "+psc+" "+obec;
     }
+
+    public Vizitka() {
+    }
+
+    public Vizitka(Integer id, @Length(max = 100) @NotBlank String celeJmeno, @Length(max = 100) @NotBlank String firma, @Length(max = 100) @NotBlank String ulice, @Length(max = 5) @NotBlank String psc, @Length(max = 100) @NotBlank String obec, @Email String email, @Length(max = 20) String telefon, String web) {
+        this.id = id;
+        this.celeJmeno = celeJmeno;
+        this.firma = firma;
+        this.ulice = ulice;
+        this.psc = psc;
+        this.obec = obec;
+        this.email = email;
+        this.telefon = telefon;
+        this.web = web;
+    }
 }
