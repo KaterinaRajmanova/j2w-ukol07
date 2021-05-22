@@ -67,4 +67,11 @@ public class VizitkaControler {
 
     }
 
+    @PostMapping(value = "/{id:[0-9]+}")
+    public Object smazat(@PathVariable Integer id) {
+        Optional<Vizitka> vizitka= vizitkaRepository.findById(id);
+        vizitkaRepository.delete(vizitka.get());
+        return "redirect:/";
+    }
+
 }
