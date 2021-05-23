@@ -30,7 +30,7 @@ public class Vizitka {
 
     @Length(max = 5)
     @NotBlank
-            // @Pattern(regexp = "\\\\d{5}"), nefunguje mi to, i když zadávám 5 číslic
+    // @Pattern(regexp = "\\\\d{5}")
     private String psc;
 
     @Length(max = 100)

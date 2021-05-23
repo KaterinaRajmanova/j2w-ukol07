@@ -132,3 +132,7 @@ input {
 #psc {
     width: 10em;
 }
+
+.invalid-feedback {
+    color: red;
+}

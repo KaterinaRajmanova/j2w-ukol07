@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vizitkovník</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+<div class="detail">
+    <form class="vizitka" th:classappend="${#fields.hasErrors('vizitka.*')} ? 'was-validated'" method="post" th:action="@{/uprava/{id}(id=${vizitka.id})}" novalidatef>
+        <div class="row">
+            <label for="jmeno" th:field="${vizitka.celeJmeno}">Jméno</label>
+            <input type="text" id="jmeno" name="celeJmeno" maxlength="100"  th:field="${vizitka.celeJmeno}"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.celeJmeno')}" th:errors="${vizitka.celeJmeno}">Prosím, vyplňte.</div>
+        </div>
+        <div class="row">
+            <label for="firma" th:field="${vizitka.firma}">Firma</label>
+            <input type="text" id="firma" name="firma" maxlength="100"  th:field="${vizitka.firma}"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.firma')}" th:errors="${vizitka.firma}">Prosím, vyplňte.</div>
+        </div>
+        <div class="row">
+            <label for="ulice" th:field="${vizitka.ulice}">Ulice a čísla</label>
+            <input type="text" id="ulice" name="ulice" maxlength="100"  th:field="${vizitka.ulice}"   />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.ulice')}" th:errors="${vizitka.ulice}">Prosím, vyplňte.</div>
+        </div>
+        <div class="row">
+            <label for="obec" th:field="${vizitka.obec}">Obec</label>
+            <input type="text" id="obec" name="obec" maxlength="100"  th:field="${vizitka.obec}"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.obec')}" th:errors="${vizitka.obec}">Prosím, vyplňte.</div>
+        </div>
+        <div class="row">
+            <label for="psc" th:field="${vizitka.psc}">PSČ</label>
+            <input type="text" id="psc" name="psc"  th:field="${vizitka.psc}"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.psc')}" th:errors="${vizitka.psc}">Prosím, vyplňte.</div>
+        </div>
+        <div class="row">
+            <label for="email" th:field="${vizitka.email}">E-mail <small>(volitelný)</small></label>
+            <input type="text" id="email" name="email" maxlength="100"  th:field="${vizitka.email}"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.email')}" th:errors="${vizitka.email}">Prosím, vyplňte.</div>
+        </div>
+        <div class="row">
+            <label for="telefon" th:field="${vizitka.telefon}">Telefon <small>(volitelný)</small></label>
+            <input type="tel" id="telefon" name="telefon"  maxlength="100"  th:field="${vizitka.telefon}"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.telefon')}" th:errors="${vizitka.telefon}">Prosím, vyplňte.</div>
+        </div>
+        <div class="row">
+            <label for="web" th:field="${vizitka.web}">Web <small>(volitelný)</small></label>
+            <input type="text" id="web" name="web" maxlength="100"   th:field="${vizitka.web}"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('vizitka.web')}" th:errors="${vizitka.web}">Prosím, vyplňte.</div>
+        </div>
+        <div class="form-controls">
+            <button type="submit">Uložit změny</button>
+        </div>
+    </form>
+
+    <nav>
+        <a href="/">◂ zpět na seznam</a>
+    </nav>
+</div>
+</body>
+</html>

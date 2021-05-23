@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -29,15 +30,15 @@ public class VizitkaControler {
     }
 
     @GetMapping("/")
-    public ModelAndView seznam (){
+    public ModelAndView seznam() {
         ModelAndView result = new ModelAndView("seznam");
         Iterable<Vizitka> listVizitek = vizitkaRepository.findAll();
-        result.addObject("seznam",listVizitek);
+        result.addObject("seznam", listVizitek);
         return result;
     }
 
     @GetMapping("/{id:[0-9]+}")
-    public Object vizitka(@PathVariable Integer id){
+    public Object vizitka(@PathVariable Integer id) {
         Optional<Vizitka> vizitka = vizitkaRepository.findById(id);
 
         if (vizitka.isPresent()) {
@@ -49,8 +50,8 @@ public class VizitkaControler {
     }
 
     @GetMapping("/nova")
-    public ModelAndView nova (){
-        ModelAndView result = new ModelAndView( "formular");
+    public ModelAndView nova() {
+        ModelAndView result = new ModelAndView("formular");
         result.addObject("vizitka", new Vizitka());
         return result;
     }
@@ -62,15 +63,33 @@ public class VizitkaControler {
         }
 
         vizitka.setId(null);
-       vizitkaRepository.save(vizitka);
+        vizitkaRepository.save(vizitka);
         return "redirect:/";
-
     }
 
     @PostMapping(value = "/{id:[0-9]+}")
     public Object smazat(@PathVariable Integer id) {
-        Optional<Vizitka> vizitka= vizitkaRepository.findById(id);
+        Optional<Vizitka> vizitka = vizitkaRepository.findById(id);
         vizitkaRepository.delete(vizitka.get());
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/upravit/{id:[0-9]+}")
+    public Object upravit(@PathVariable Integer id) {
+        Optional<Vizitka> vizitka = vizitkaRepository.findById(id);
+        ModelAndView oprava = new ModelAndView("formularProUpravu");
+        oprava.addObject("vizitka",vizitka.get());
+        return oprava;
+    }
+
+
+    @PostMapping(value = "/uprava/{id:[0-9]+}")
+    public Object upravit(@PathVariable Integer id,@ModelAttribute("vizitka") @Valid Vizitka vizitka, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "formularProUpravu";
+        }
+        vizitka.setId(id);
+        vizitkaRepository.save(vizitka);
         return "redirect:/";
     }
 

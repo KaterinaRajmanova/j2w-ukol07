@@ -26,10 +26,16 @@
             </div>
         </div>
     </div>
-    <form class="row g-3" th:action="@{/{id}(id=${vizitka.id})}"method="post">
+    <form class="form-controls" th:action="@{/{id}(id=${vizitka.id})}"method="post">
         <div>
             <input name="id" type="hidden" th:value="${vizitka.id}"/>
-            <button type="submit" class="btn btn-primary">Smazat vizitku</button>
+            <button type="submit" class="btn btn-primary">Smazat</button>
+        </div>
+    </form>
+    <form class="form-controls" th:action="@{/upravit/{id}(id=${vizitka.id})}"method="get">
+        <div>
+            <input name="id" type="hidden" th:value="${vizitka.id}"/>
+            <button type="submit" class="btn btn-primary">Upravit</button>
         </div>
     </form>
 
