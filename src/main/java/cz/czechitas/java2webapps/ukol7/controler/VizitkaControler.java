@@ -90,7 +90,7 @@ public class VizitkaControler {
         }
         vizitka.setId(id);
         vizitkaRepository.save(vizitka);
-        return "redirect:/";
+        return "vizitka";
     }
 
 }
